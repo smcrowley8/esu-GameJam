@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 from math import floor
 
-path='playerUp2.png'
+path='playerAttackDown1.png'
 '''
 first we scale
 '''

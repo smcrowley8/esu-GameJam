@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 from math import floor
-path='enemyRight2.png'
+path='enemyUp2.png'
 img=Image.open(path)
 img=img.convert("RGBA")
 datas=img.getdata()
