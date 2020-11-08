@@ -29,6 +29,11 @@ img_width=80
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('only one move at a time')
 clock = pygame.time.Clock()
+##music stuff
+playlist=list()
+music='audio.wav'
+pygame.mixer.music.load(music)
+pygame.mixer.music.queue(music)
 
 class Character:
     def __init__(self, x=0, y=0, player=False):
@@ -71,7 +76,7 @@ class Character:
         else:
             self.hp=5
         self.dmg=5
-        
+
     def drawSelf(self):
         if self.attacking==True: #only true for players
             if self.direction=="up":
@@ -327,6 +332,7 @@ def game_loop():
     makeEnemies()
     pause=True #this is for selecting difficulty at the start
     pauseMsg="press E for easy\n M for medium\n and H for hard"
+    pygame.mixer.music.play(-1)
     while not gameExit:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -438,9 +444,9 @@ def game_loop():
                 #make the enemies move towards player. if they are adjacent, attack
                 if waitCT%30==0:
                     make_enemy_turn()
-                    SCORE+=10
                     if player.hp<=0:
                         gameExit=True
+                    SCORE+=10
                     if len(enemies)<numEnemies:
                         makeEnemies()
                     player_turn=True
@@ -465,7 +471,7 @@ def game_loop():
         #
         waitCT=waitCT+1
         pygame.display.update()
-        clock.tick(60)#we want 2 frames per second so that the game is a slow turn base
+        clock.tick(50)#we want 2 frames per second so that the game is a slow turn base
     #game is over, replay?
     message_display("game over", (display_width/2), (display_height/2), 115)
     pygame.display.update()
