@@ -306,6 +306,14 @@ def make_enemy_turn():
                     nextY-=1
             if board[nextX][nextY]==0:
                 #unoccupioed so move there
+                if nextX>enemy.x:
+                    enemy.direction="right"
+                elif nextX<enemy.x:
+                    enemy.direction="left"
+                elif nextY>enemy.y:
+                    enemy.direction="down"
+                elif nextY<enemy.y:
+                    enemy.direction="up"
                 board[enemy.x][enemy.y]=0
                 enemy.x=nextX
                 enemy.y=nextY 
